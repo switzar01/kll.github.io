@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Культурные места Екатеринбурга</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Культурные места Екатеринбурга</h1>
+  <div id="map"></div>
+
+  <script>
+    var map = L.map('map').setView([56.8380, 60.6000], 12); // Екатеринбург
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var culturalPlaces = [
+      {
+        "name": "Екатеринбургский театр оперы и балета",
+        "lat": 56.8387,
+        "lng": 60.6012,
+        "url": "https://www.etot.ru/"
+      },
+      {
+        "name": "Екатеринбургский музей изобразительных искусств",
+        "lat": 56.8405,
+        "lng": 60.6045,
+        "url": "https://ekaterinburg-artmuseum.ru/"
+      },
+      {
+        "name": "Музей истории Екатеринбурга",
+        "lat": 56.8401,
+        "lng": 60.6089,
+        "url": "https://www.muzei-ekb.ru/"
+      },
+      {
+        "name": "Парк им. В.В. Маяковского",
+        "lat": 56.8354,
+        "lng": 60.6187,
+        "url": "https://www.park-mayakovskogo.ru/"
+      },
+      {
+        "name": "ЦПКиО им. Маяковского",
+        "lat": 56.8122,
+        "lng": 60.6467,
+        "url": "https://nashural.ru/dostoprimechatelnosti-urala/sverdlovskaya-oblast/ekaterinburg/cpkio/"
+      },
+      {
+        "name": "yjyjyj",
+        "lat": 56.9122,
+        "lng": 60.7467,
+        "url": "https://www.park-mayakovskogo.ru/"
+      }
+      // Добавьте другие культурные места 
+    ];
+
+    culturalPlaces.forEach(function (place) {
+      var marker = L.marker([place.lat, place.lng]).addTo(map);
+      marker.bindPopup("<b>" + place.name + "</b><br><a href='" + place.url + "' target='_blank'>Подробнее</a>");
+    });
+  </script>
+</body>
+
+</html>
